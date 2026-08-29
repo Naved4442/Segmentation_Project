@@ -1,0 +1,13 @@
+# Dataset directories (symlinked to archive — do not commit)
+Train/
+
+# Preprocessed numpy arrays (share via Google Drive)
+*.npy
+
+# Python
+__pycache__/
+.ipynb_checkpoints/
+
+# Virtual environment
+.venv/
+archive/

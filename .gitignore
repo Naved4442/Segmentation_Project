@@ -11,3 +11,4 @@ __pycache__/
 # Virtual environment
 .venv/
 archive/
+model_results/models/*.keras

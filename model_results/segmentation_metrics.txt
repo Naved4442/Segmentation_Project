@@ -1,0 +1,8 @@
+
+Segmentation Evaluation Results (Test Set, n=173)
+=============================================================
+IoU        : 0.4536
+Dice       : 0.6241
+Precision  : 0.6047
+Recall     : 0.6449
+F1 Score   : 0.6241

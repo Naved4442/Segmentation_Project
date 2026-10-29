@@ -245,3 +245,53 @@ The script will output all six `.npy` files to `outputs/` and print a complete s
 6. **515 out of 1,148 images have empty masks** — these are valid (no buildings in those tiles)
 7. **3 invalid geometries** were auto-repaired during mask generation — no manual intervention needed
 8. The sanity check image at `outputs/sanity_check.png` shows sample image/mask pairs
+
+
+---
+
+## Person 3 — Explainability and Urban-Planning Report
+
+The explainability stage consumes the trained model and the preprocessed test images. It does **not** retrain the model.
+
+### Inputs
+
+- `outputs/X_test.npy` — preprocessed test images from the shared Drive folder
+- `model_results/models/best_model.keras` — best checkpoint produced by `train_model.py`
+- `model_results/segmentation_metrics.txt` — saved evaluation metrics, if available
+
+### What it produces
+
+Run from the repository root:
+
+```bash
+pip install -r requirements_xai.txt
+python explainability_report.py
+```
+
+The script writes results to `model_results/explainability/`:
+
+- `gradcam_test_*.png` — Grad-CAM heatmaps and overlays
+- `occlusion_test_*.png` — patch-occlusion sensitivity heatmaps and overlays
+- `summary.json` — calculated test-image statistics and any metrics read from the saved metrics file
+- `urban_planning_report.md` — a report grounded in the calculated statistics
+
+By default, it explains the first three test images. Change `DEFAULT_SAMPLES` in `explainability_report.py` to process more. Occlusion sensitivity is computationally more expensive because it evaluates the model repeatedly for each image patch.
+
+### Optional Gemini-generated report
+
+The script generates a local template report by default. To request an LLM-written version, install the optional package and set your API key in the shell; never commit the key:
+
+```bash
+pip install google-genai
+export GEMINI_API_KEY="your-key"
+python explainability_report.py
+```
+
+Optionally set `GEMINI_MODEL` to a model available to your account. If the API call fails, the script falls back to the local template.
+
+### Interpretation limits
+
+- Grad-CAM shows feature-map regions associated with the model's aggregate predicted building probability.
+- Occlusion sensitivity estimates how replacing an image patch changes the mean predicted building probability.
+- The reported top-20% explanation overlap is a **custom project diagnostic**, not a standardized XAI metric and not a measure of model accuracy. It compares important pixels with the model's own predicted building mask.
+- Predicted building pixel coverage is not the same as verified real-world building density. Do not make planning or safety decisions from these maps without ground-truth, geospatial, and local validation.

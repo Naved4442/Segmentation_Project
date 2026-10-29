@@ -1,0 +1,4 @@
+tensorflow>=2.15
+numpy
+matplotlib
+# Optional: install google-genai to enable Gemini-written reports

@@ -53,7 +53,7 @@ for d in [RESULTS_DIR, MODEL_DIR, VIS_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
 IMG_SIZE = 128
-BATCH_SIZE = 16          # 128x128 + EfficientNetB3 is memory-heavy; drop to 8 if you OOM
+BATCH_SIZE = 16          # 128x128 + EfficientNetB3 is memory-heavy; reduce if you OOM
 EPOCHS = 100
 LEARNING_RATE = 1e-4
 NORM_DIVISOR = 2000.0     # per README: raw uint16 values are 0-2000+

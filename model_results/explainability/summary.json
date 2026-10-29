@@ -1,0 +1,47 @@
+{
+  "project": "SpaceNet 2 Paris building segmentation",
+  "model_path": "model_results/models/best_model.keras",
+  "gradcam_target_layer": "top_activation",
+  "test_images_available": 173,
+  "samples_explained": 3,
+  "test_metrics": {
+    "iou": 0.1743,
+    "dice": 0.2968,
+    "precision": 0.2732,
+    "recall": 0.3249,
+    "f1_score": 0.2968
+  },
+  "diagnostic_definition": "Top 20% explanation pixels overlapping predicted building pixels; custom diagnostic only, not a standardized metric or accuracy score.",
+  "samples": [
+    {
+      "test_index": 1,
+      "predicted_building_coverage": 0.0,
+      "mean_predicted_building_probability": 0.09999153017997742,
+      "gradcam_top20_overlap": 0.0,
+      "occlusion_top20_overlap": 0.0,
+      "occlusion_baseline_mean_probability": 0.09999153017997742,
+      "gradcam_figure": "model_results/explainability/gradcam_test_1.png",
+      "occlusion_figure": "model_results/explainability/occlusion_test_1.png"
+    },
+    {
+      "test_index": 2,
+      "predicted_building_coverage": 0.0,
+      "mean_predicted_building_probability": 0.09955751895904541,
+      "gradcam_top20_overlap": 0.0,
+      "occlusion_top20_overlap": 0.0,
+      "occlusion_baseline_mean_probability": 0.09955751895904541,
+      "gradcam_figure": "model_results/explainability/gradcam_test_2.png",
+      "occlusion_figure": "model_results/explainability/occlusion_test_2.png"
+    },
+    {
+      "test_index": 3,
+      "predicted_building_coverage": 0.34674072265625,
+      "mean_predicted_building_probability": 0.321464478969574,
+      "gradcam_top20_overlap": 0.3422736970435843,
+      "occlusion_top20_overlap": 0.5697115384615384,
+      "occlusion_baseline_mean_probability": 0.321464478969574,
+      "gradcam_figure": "model_results/explainability/gradcam_test_3.png",
+      "occlusion_figure": "model_results/explainability/occlusion_test_3.png"
+    }
+  ]
+}
